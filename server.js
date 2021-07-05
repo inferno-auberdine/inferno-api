@@ -28,10 +28,10 @@ db.mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log(`Connected to the database with connexion string ${db.url}!`);
+    console.log(`Connected to the database!`);
   })
   .catch(err => {
-    console.log('Cannot connect to the database!', err);
+    console.log('Cannot connect to the database with connexion string ${db.url}!', err);
     process.exit();
   });
 
