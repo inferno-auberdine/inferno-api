@@ -3,9 +3,9 @@ const routes = require('./api/routes/raid.routes'); // import the routes
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const API_PORT = process.env.API_PORT || '3333';
+const API_PORT = process.env.PORT || '5000';
 
-const db = require("./api/models");
+const db = require('./api/models');
 
 const corsOptions = {origin: '*'};
 app.use(bodyParser.json());
@@ -15,9 +15,10 @@ app.use(cors(corsOptions));
 
 app.use('/api', routes); //to use the routes
 
-app.route("/").get(function (req, res) {
-  res.sendFile(process.cwd() + "/index.html");
-});
+app.route('/')
+  .get((req, res) => {
+    res.sendFile(process.cwd() + '/index.html');
+  });
 
 db.mongoose
   .connect(db.url, {
@@ -25,10 +26,10 @@ db.mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log("Connected to the database!");
+    console.log('Connected to the database!');
   })
   .catch(err => {
-    console.log("Cannot connect to the database!", err);
+    console.log('Cannot connect to the database!', err);
     process.exit();
   });
 
