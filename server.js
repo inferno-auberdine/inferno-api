@@ -20,13 +20,15 @@ app.route('/')
     res.sendFile(process.cwd() + '/index.html');
   });
 
+console.log(db.url);
+
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
   .then(() => {
-    console.log('Connected to the database!');
+    console.log(`Connected to the database with connexion string ${db.url}!`);
   })
   .catch(err => {
     console.log('Cannot connect to the database!', err);
